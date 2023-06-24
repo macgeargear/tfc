@@ -8,7 +8,8 @@
     "strictNullChecks": true,
     "noImplicitReturns": true,
     "noUnusedLocals": false,
-    "outDir": "dist"
+    "outDir": "dist",
+    "importHelpers": false
   },
-  "include": ["src/*/"]
+  "include": ["src/**/*"]
 }
