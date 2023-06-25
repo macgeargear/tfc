@@ -1,7 +1,6 @@
-import crypto from "crypto";
 import fs from "fs";
 import { Arguments, CommandBuilder } from "yargs";
-import { encryptText } from "../util";
+import { encryptTextRSA } from "../util";
 
 type Options = {
   filename: string;
@@ -18,7 +17,7 @@ export const builder: CommandBuilder<Options, Options> = (yargs) => {
 export const handler = (argv: Arguments<Options>): void => {
   const { filename } = argv;
   const data = fs.readFileSync(filename);
-  const encryptedText = encryptText(data.toString());
+  const encryptedText = encryptTextRSA(data.toString());
   const result = `decrypted text: ${encryptedText.toString()}`;
 
   process.stdout.write(data);

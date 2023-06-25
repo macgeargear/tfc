@@ -21,14 +21,14 @@ export function checksum(
   data: string,
   algo?: string,
   encoding?: BinaryToTextEncoding
-) {
+): string {
   return crypto
     .createHash(algo || "md5")
     .update("str", "utf8")
     .digest(encoding || "hex");
 }
 
-export function encryptText(plainText: string) {
+export function encryptTextRSA(plainText: string): Buffer {
   return crypto.publicEncrypt(
     {
       key: fs.readFileSync("public_key.pem", "utf-8"),
@@ -39,7 +39,7 @@ export function encryptText(plainText: string) {
   );
 }
 
-export function decryptText(cipherText: Buffer) {
+export function decryptTextRSA(cipherText: Buffer): Buffer {
   return crypto.privateDecrypt(
     {
       key: fs.readFileSync("private_key.pem", "utf-8"),
@@ -49,3 +49,5 @@ export function decryptText(cipherText: Buffer) {
     cipherText
   );
 }
+
+export function encryptTextAES(plainText: string) {}
